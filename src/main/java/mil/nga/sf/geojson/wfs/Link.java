@@ -1,8 +1,6 @@
 package mil.nga.sf.geojson.wfs;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -19,7 +17,7 @@ import mil.nga.sf.util.SFException;
  */
 @JsonPropertyOrder({ "href", "rel", "type", "hreflang" })
 @JsonInclude(Include.NON_EMPTY)
-public class Link implements Serializable {
+public class Link extends FeaturesObject {
 
 	/**
 	 * Serialization Version number
@@ -70,19 +68,7 @@ public class Link implements Serializable {
 	 * Constructor
 	 */
 	public Link() {
-	}
 
-	/**
-	 * Constructor
-	 * 
-	 * @param values
-	 *            value mapping
-	 */
-	public Link(Map<String, String> values) {
-		href = values.get(HREF);
-		rel = values.get(REL);
-		type = values.get(TYPE);
-		hreflang = values.get(HREFLANG);
 	}
 
 	/**
