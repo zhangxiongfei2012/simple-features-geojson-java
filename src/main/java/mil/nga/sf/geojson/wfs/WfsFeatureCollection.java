@@ -1,7 +1,10 @@
 package mil.nga.sf.geojson.wfs;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import mil.nga.sf.geojson.FeatureCollection;
 
@@ -31,6 +34,16 @@ public class WfsFeatureCollection {
 	 * Number Returned property name
 	 */
 	public static final String NUMBER_RETURNED = "numberReturned";
+
+	/**
+	 * Link relation for next
+	 */
+	public static final String LINK_RELATION_NEXT = "next";
+
+	/**
+	 * Limit default
+	 */
+	public static final int LIMIT_DEFAULT = 10;
 
 	/**
 	 * Feature collection
@@ -90,6 +103,26 @@ public class WfsFeatureCollection {
 	 */
 	public void setLinks(Collection<Link> links) {
 		featureCollection.setForeignMember(LINKS, links);
+	}
+
+	/**
+	 * Get a mapping between link relations and links
+	 * 
+	 * @return relation links
+	 */
+	public Map<String, List<Link>> getRelationLinks() {
+		Map<String, List<Link>> links = new HashMap<>();
+		List<Link> allLinks = getLinks();
+		for (Link link : allLinks) {
+			String relation = link.getRel();
+			List<Link> relationLinks = links.get(relation);
+			if (relationLinks == null) {
+				relationLinks = new ArrayList<>();
+				links.put(relation, relationLinks);
+			}
+			relationLinks.add(link);
+		}
+		return links;
 	}
 
 	/**
