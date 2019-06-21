@@ -113,14 +113,16 @@ public class WfsFeatureCollection {
 	public Map<String, List<Link>> getRelationLinks() {
 		Map<String, List<Link>> links = new HashMap<>();
 		List<Link> allLinks = getLinks();
-		for (Link link : allLinks) {
-			String relation = link.getRel();
-			List<Link> relationLinks = links.get(relation);
-			if (relationLinks == null) {
-				relationLinks = new ArrayList<>();
-				links.put(relation, relationLinks);
+		if (allLinks != null) {
+			for (Link link : allLinks) {
+				String relation = link.getRel();
+				List<Link> relationLinks = links.get(relation);
+				if (relationLinks == null) {
+					relationLinks = new ArrayList<>();
+					links.put(relation, relationLinks);
+				}
+				relationLinks.add(link);
 			}
-			relationLinks.add(link);
 		}
 		return links;
 	}
