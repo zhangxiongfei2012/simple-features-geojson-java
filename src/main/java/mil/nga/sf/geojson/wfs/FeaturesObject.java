@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
  * 
  * @author osbornb
  */
-@JsonSubTypes({ @Type(Content.class), @Type(CollectionInfo.class),
+@JsonSubTypes({ @Type(Collections.class), @Type(Collection.class),
 		@Type(Link.class), @Type(Extent.class) })
 @JsonInclude(Include.NON_EMPTY)
 public abstract class FeaturesObject implements Serializable {

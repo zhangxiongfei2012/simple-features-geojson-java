@@ -15,7 +15,7 @@ import mil.nga.sf.util.SFException;
  * 
  * @author osbornb
  */
-@JsonPropertyOrder({ "href", "rel", "type", "hreflang" })
+@JsonPropertyOrder({ "href", "rel", "type", "hreflang", "title" })
 @JsonInclude(Include.NON_EMPTY)
 public class Link extends FeaturesObject {
 
@@ -23,26 +23,6 @@ public class Link extends FeaturesObject {
 	 * Serialization Version number
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * href property name
-	 */
-	public static final String HREF = "href";
-
-	/**
-	 * rel property name
-	 */
-	public static final String REL = "rel";
-
-	/**
-	 * type property name
-	 */
-	public static final String TYPE = "type";
-
-	/**
-	 * hreflang property name
-	 */
-	public static final String HREFLANG = "hreflang";
 
 	/**
 	 * href
@@ -63,6 +43,11 @@ public class Link extends FeaturesObject {
 	 * hreflang
 	 */
 	private String hreflang;
+
+	/**
+	 * title
+	 */
+	private String title;
 
 	/**
 	 * Constructor
@@ -155,6 +140,25 @@ public class Link extends FeaturesObject {
 	 */
 	public void setHreflang(String hreflang) {
 		this.hreflang = hreflang;
+	}
+
+	/**
+	 * Get the title
+	 * 
+	 * @return title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * Set the title
+	 * 
+	 * @param title
+	 *            title
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**

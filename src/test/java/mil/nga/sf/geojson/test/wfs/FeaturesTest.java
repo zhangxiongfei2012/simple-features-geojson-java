@@ -10,8 +10,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import junit.framework.TestCase;
 import mil.nga.sf.geojson.Feature;
 import mil.nga.sf.geojson.FeatureConverter;
-import mil.nga.sf.geojson.wfs.CollectionInfo;
-import mil.nga.sf.geojson.wfs.Content;
+import mil.nga.sf.geojson.wfs.Collection;
+import mil.nga.sf.geojson.wfs.Collections;
 import mil.nga.sf.geojson.wfs.Extent;
 import mil.nga.sf.geojson.wfs.Link;
 import mil.nga.sf.geojson.wfs.WfsFeatureCollection;
@@ -20,9 +20,9 @@ import mil.nga.sf.geojson.wfs.WfsFeaturesConverter;
 public class FeaturesTest {
 
 	@Test
-	public void testContent() {
+	public void testCollections() {
 
-		String contentValue = "{\n" + "  \"links\" : [ {\n"
+		String collectionsValue = "{\n" + "  \"links\" : [ {\n"
 				+ "    \"rel\" : \"self\",\n"
 				+ "    \"type\" : \"application/json\",\n"
 				+ "    \"title\" : \"this document\",\n"
@@ -150,15 +150,16 @@ public class FeaturesTest {
 				+ "    } ],\n"
 				+ "    \"crs\" : [ \"http://www.opengis.net/def/crs/EPSG/0/25832\", \"http://www.opengis.net/def/crs/OGC/1.3/CRS84\", \"http://www.opengis.net/def/crs/EPSG/0/3034\", \"http://www.opengis.net/def/crs/EPSG/0/3035\", \"http://www.opengis.net/def/crs/EPSG/0/3043\", \"http://www.opengis.net/def/crs/EPSG/0/3044\", \"http://www.opengis.net/def/crs/EPSG/0/3045\", \"http://www.opengis.net/def/crs/EPSG/0/3857\", \"http://www.opengis.net/def/crs/EPSG/0/4258\", \"http://www.opengis.net/def/crs/EPSG/0/4326\", \"http://www.opengis.net/def/crs/EPSG/0/4647\", \"http://www.opengis.net/def/crs/EPSG/0/5649\", \"http://www.opengis.net/def/crs/EPSG/0/5650\", \"http://www.opengis.net/def/crs/EPSG/0/5651\", \"http://www.opengis.net/def/crs/EPSG/0/5652\", \"http://www.opengis.net/def/crs/EPSG/0/5653\", \"http://www.opengis.net/def/crs/EPSG/0/28992\", \"http://www.opengis.net/def/crs/EPSG/0/25831\", \"http://www.opengis.net/def/crs/EPSG/0/25832\", \"http://www.opengis.net/def/crs/EPSG/0/25833\" ]\n"
 				+ "  } ]\n" + "}";
-		Content content = WfsFeaturesConverter.toContent(contentValue);
-		TestCase.assertNotNull(content);
+		Collections collections = WfsFeaturesConverter
+				.toCollections(collectionsValue);
+		TestCase.assertNotNull(collections);
 
 	}
 
 	@Test
-	public void testCollectionInfo() {
+	public void testCollection() {
 
-		String content = "  {\n" + "  \"name\": \"buildings\",\n"
+		String content = "  {\n" + "  \"id\": \"buildings\",\n"
 				+ "  \"title\": \"Buildings\",\n"
 				+ "  \"description\": \"Buildings in the city of Bonn.\",\n"
 				+ "  \"extent\": {\n"
@@ -172,14 +173,13 @@ public class FeaturesTest {
 				+ "  \"rel\": \"describedBy\", \"type\": \"text/html\",\n"
 				+ "  \"title\": \"Feature catalogue for buildings\" }\n"
 				+ "  ] }";
-		CollectionInfo collectionInfo = WfsFeaturesConverter
-				.toCollectionInfo(content);
-		TestCase.assertNotNull(collectionInfo);
-		TestCase.assertEquals("buildings", collectionInfo.getName());
-		TestCase.assertEquals("Buildings", collectionInfo.getTitle());
+		Collection collection = WfsFeaturesConverter.toCollection(content);
+		TestCase.assertNotNull(collection);
+		TestCase.assertEquals("buildings", collection.getId());
+		TestCase.assertEquals("Buildings", collection.getTitle());
 		TestCase.assertEquals("Buildings in the city of Bonn.",
-				collectionInfo.getDescription());
-		Extent extent = collectionInfo.getExtent();
+				collection.getDescription());
+		Extent extent = collection.getExtent();
 		TestCase.assertNotNull(extent);
 		TestCase.assertEquals(4, extent.getSpatial().size());
 		TestCase.assertEquals(7.01, extent.getSpatial().get(0));
@@ -191,7 +191,7 @@ public class FeaturesTest {
 				extent.getTemporal().get(0));
 		TestCase.assertEquals("2018-03-18T12:11:00Z",
 				extent.getTemporal().get(1));
-		List<Link> links = collectionInfo.getLinks();
+		List<Link> links = collection.getLinks();
 		TestCase.assertNotNull(extent);
 		TestCase.assertEquals(2, links.size());
 		TestCase.assertEquals(

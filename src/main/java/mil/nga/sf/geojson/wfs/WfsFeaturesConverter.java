@@ -1,7 +1,5 @@
 package mil.nga.sf.geojson.wfs;
 
-import java.util.Collection;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
 import mil.nga.sf.geojson.FeatureConverter;
@@ -14,69 +12,69 @@ import mil.nga.sf.geojson.FeatureConverter;
 public class WfsFeaturesConverter {
 
 	/**
-	 * Convert the string content to a content
+	 * Convert the string content to a collections
 	 * 
 	 * @param content
 	 *            string content
-	 * @return content
+	 * @return collections
 	 */
-	public static Content toContent(String content) {
-		return FeatureConverter.toTypedObject(Content.class, content);
+	public static Collections toCollections(String content) {
+		return FeatureConverter.toTypedObject(Collections.class, content);
 	}
 
 	/**
-	 * Convert the object value to a content
+	 * Convert the object value to a collections
 	 * 
 	 * @param value
 	 *            object value
-	 * @return content
+	 * @return collections
 	 */
-	public static Content toContent(Object value) {
-		return FeatureConverter.toTypedObject(Content.class, value);
+	public static Collections toCollections(Object value) {
+		return FeatureConverter.toTypedObject(Collections.class, value);
 	}
 
 	/**
-	 * Convert the JSON tree to a content
+	 * Convert the JSON tree to a collections
 	 * 
 	 * @param tree
 	 *            tree node
-	 * @return content
+	 * @return collections
 	 */
-	public static Content toContent(JsonNode tree) {
-		return FeatureConverter.toTypedObject(Content.class, tree);
+	public static Collections toCollections(JsonNode tree) {
+		return FeatureConverter.toTypedObject(Collections.class, tree);
 	}
 
 	/**
-	 * Convert the string content to a collection info
+	 * Convert the string content to a collection
 	 * 
 	 * @param content
 	 *            string content
-	 * @return collection info
+	 * @return collection
 	 */
-	public static CollectionInfo toCollectionInfo(String content) {
-		return FeatureConverter.toTypedObject(CollectionInfo.class, content);
+	public static Collection toCollection(String content) {
+		return FeatureConverter.toTypedObject(Collection.class, content);
 	}
 
 	/**
-	 * Convert the object value to a collection info
+	 * Convert the object value to a collection
 	 * 
 	 * @param value
 	 *            object value
-	 * @return collection info
+	 * @return collection
 	 */
-	public static CollectionInfo toCollectionInfo(Object value) {
-		return FeatureConverter.toTypedObject(CollectionInfo.class, value);
+	public static Collection toCollection(Object value) {
+		return FeatureConverter.toTypedObject(Collection.class, value);
 	}
 
 	/**
-	 * Convert the JSON tree to a collection info
+	 * Convert the JSON tree to a collection
 	 * 
 	 * @param tree
 	 *            tree node
-	 * @return collection info
+	 * @return collection
 	 */
-	public static CollectionInfo toCollectionInfo(JsonNode tree) {
-		return FeatureConverter.toTypedObject(CollectionInfo.class, tree);
+	public static Collection toCollection(JsonNode tree) {
+		return FeatureConverter.toTypedObject(Collection.class, tree);
 	}
 
 	/**
@@ -136,7 +134,7 @@ public class WfsFeaturesConverter {
 	 * @return feature collection
 	 */
 	public static WfsFeatureCollection toFeatureCollection(
-			Collection<mil.nga.sf.Geometry> simpleGeometries) {
+			java.util.Collection<mil.nga.sf.Geometry> simpleGeometries) {
 		return new WfsFeatureCollection(
 				FeatureConverter.toFeatureCollection(simpleGeometries));
 	}

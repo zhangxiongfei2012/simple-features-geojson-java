@@ -7,12 +7,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Collection Info
+ * Collection
  * 
  * @author osbornb
  */
-@JsonPropertyOrder({ "name", "title", "description", "links", "extent", "crs" })
-public class CollectionInfo extends FeaturesObject {
+@JsonPropertyOrder({ "id", "title", "description", "links", "extent", "crs",
+		"itemType" })
+public class Collection extends FeaturesObject {
 
 	/**
 	 * Serialization Version number
@@ -22,7 +23,7 @@ public class CollectionInfo extends FeaturesObject {
 	/**
 	 * Identifier of the collection used
 	 */
-	private String name;
+	private String id;
 
 	/**
 	 * Human readable title of the collection
@@ -45,45 +46,52 @@ public class CollectionInfo extends FeaturesObject {
 	private Extent extent;
 
 	/**
-	 * CRS
+	 * The list of coordinate reference systems supported by the service; the
+	 * first item is the default coordinate reference system
 	 */
 	private List<String> crs = new ArrayList<>();
 
 	/**
+	 * Indicator about the type of the items in the collection (the default
+	 * value is 'feature')
+	 */
+	private String itemType;
+
+	/**
 	 * Constructor
 	 */
-	public CollectionInfo() {
+	public Collection() {
 
 	}
 
 	/**
 	 * Constructor
 	 * 
-	 * @param name
-	 *            name
+	 * @param id
+	 *            id
 	 */
-	public CollectionInfo(String name) {
-		this.name = name;
+	public Collection(String id) {
+		this.id = id;
 	}
 
 	/**
-	 * Get the name
+	 * Get the id
 	 * 
-	 * @return name
+	 * @return id
 	 */
 	@JsonInclude(JsonInclude.Include.ALWAYS)
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
 	/**
-	 * Set the name
+	 * Set the id
 	 * 
-	 * @param name
-	 *            name
+	 * @param id
+	 *            id
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
@@ -200,6 +208,24 @@ public class CollectionInfo extends FeaturesObject {
 	 */
 	public void addCrs(String crs) {
 		this.crs.add(crs);
+	}
+
+	/**
+	 * Get the item type
+	 * 
+	 * @return item type
+	 */
+	public String getItemType() {
+		return itemType;
+	}
+
+	/**
+	 * Set the item type
+	 * 
+	 * @param itemType
+	 */
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
 	}
 
 }

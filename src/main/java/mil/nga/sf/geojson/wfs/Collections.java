@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({ "links", "collections" })
 @JsonInclude(Include.ALWAYS)
-public class Content extends FeaturesObject {
+public class Collections extends FeaturesObject {
 
 	/**
 	 * Serialization Version number
@@ -29,12 +29,12 @@ public class Content extends FeaturesObject {
 	/**
 	 * Collection of collections
 	 */
-	private List<CollectionInfo> collections = new ArrayList<>();
+	private List<Collection> collections = new ArrayList<>();
 
 	/**
 	 * Constructor
 	 */
-	public Content() {
+	public Collections() {
 
 	}
 
@@ -72,7 +72,7 @@ public class Content extends FeaturesObject {
 	 * 
 	 * @return collections
 	 */
-	public List<CollectionInfo> getCollections() {
+	public List<Collection> getCollections() {
 		return collections;
 	}
 
@@ -82,7 +82,7 @@ public class Content extends FeaturesObject {
 	 * @param collections
 	 *            collections
 	 */
-	public void setCollections(List<CollectionInfo> collections) {
+	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
 	}
 
@@ -92,7 +92,7 @@ public class Content extends FeaturesObject {
 	 * @param collection
 	 *            collection info
 	 */
-	public void addCollection(CollectionInfo collection) {
+	public void addCollection(Collection collection) {
 		this.collections.add(collection);
 	}
 
