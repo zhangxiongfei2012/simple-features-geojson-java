@@ -17,8 +17,16 @@ import mil.nga.sf.geojson.wfs.Link;
 import mil.nga.sf.geojson.wfs.WfsFeatureCollection;
 import mil.nga.sf.geojson.wfs.WfsFeaturesConverter;
 
+/**
+ * Features tests
+ * 
+ * @author osbornb
+ */
 public class FeaturesTest {
 
+	/**
+	 * Test collections
+	 */
 	@Test
 	public void testCollections() {
 
@@ -52,8 +60,8 @@ public class FeaturesTest {
 				+ "  \"collections\" : [ {\n"
 				+ "    \"name\" : \"flurstueck\",\n"
 				+ "    \"title\" : \"Flurstück\",\n" + "    \"extent\" : {\n"
-				+ "      \"spatial\" : [ 5.61272621360749, 50.2373512077239, 9.58963433710139, 52.5286304537795 ],\n"
-				+ "      \"temporal\" : [ \"2018-05-18T14:45:44Z\", \"2019-06-17T21:41:19Z\" ]\n"
+				+ "      \"spatial\" : { \"bbox\" : [ 5.61272621360749, 50.2373512077239, 9.58963433710139, 52.5286304537795 ] },\n"
+				+ "      \"temporal\" : { \"interval\" : [ \"2018-05-18T14:45:44Z\", \"2019-06-17T21:41:19Z\" ] }\n"
 				+ "    },\n" + "    \"links\" : [ {\n"
 				+ "      \"rel\" : \"item\",\n"
 				+ "      \"type\" : \"application/geo+json\",\n"
@@ -88,8 +96,8 @@ public class FeaturesTest {
 				+ "    \"name\" : \"gebaeudebauwerk\",\n"
 				+ "    \"title\" : \"Gebäude, Bauwerk\",\n"
 				+ "    \"extent\" : {\n"
-				+ "      \"spatial\" : [ 5.61272621360749, 50.2373512077239, 9.58963433710139, 52.5286304537795 ],\n"
-				+ "      \"temporal\" : [ \"2018-05-18T14:45:44Z\", \"2019-06-17T21:41:19Z\" ]\n"
+				+ "      \"spatial\" : { \"bbox\" : [ 5.61272621360749, 50.2373512077239, 9.58963433710139, 52.5286304537795 ] },\n"
+				+ "      \"temporal\" : { \"interval\" : [ \"2018-05-18T14:45:44Z\", \"2019-06-17T21:41:19Z\" ] }\n"
 				+ "    },\n" + "    \"links\" : [ {\n"
 				+ "      \"rel\" : \"item\",\n"
 				+ "      \"type\" : \"application/geo+json\",\n"
@@ -120,8 +128,8 @@ public class FeaturesTest {
 				+ "  }, {\n" + "    \"name\" : \"verwaltungseinheit\",\n"
 				+ "    \"title\" : \"Verwaltungseinheit\",\n"
 				+ "    \"extent\" : {\n"
-				+ "      \"spatial\" : [ 5.61272621360749, 50.2373512077239, 9.58963433710139, 52.5286304537795 ],\n"
-				+ "      \"temporal\" : [ \"2018-05-18T14:45:44Z\", \"2019-06-17T21:41:19Z\" ]\n"
+				+ "      \"spatial\" : { \"bbox\" : [ 5.61272621360749, 50.2373512077239, 9.58963433710139, 52.5286304537795 ] },\n"
+				+ "      \"temporal\" : { \"interval\" : [ \"2018-05-18T14:45:44Z\", \"2019-06-17T21:41:19Z\" ] }\n"
 				+ "    },\n" + "    \"links\" : [ {\n"
 				+ "      \"rel\" : \"item\",\n"
 				+ "      \"type\" : \"application/geo+json\",\n"
@@ -156,6 +164,9 @@ public class FeaturesTest {
 
 	}
 
+	/**
+	 * Test a collection
+	 */
 	@Test
 	public void testCollection() {
 
@@ -163,8 +174,8 @@ public class FeaturesTest {
 				+ "  \"title\": \"Buildings\",\n"
 				+ "  \"description\": \"Buildings in the city of Bonn.\",\n"
 				+ "  \"extent\": {\n"
-				+ "  \"spatial\": [ 7.01, 50.63, 7.22, 50.78 ],\n"
-				+ "  \"temporal\": [ \"2010-02-15T12:34:56Z\", \"2018-03-18T12:11:00Z\" ]\n"
+				+ "  \"spatial\": { \"bbox\" : [ 7.01, 50.63, 7.22, 50.78 ] },\n"
+				+ "  \"temporal\": { \"interval\" : [ \"2010-02-15T12:34:56Z\", \"2018-03-18T12:11:00Z\" ] }\n"
 				+ "  },\n" + "  \"links\": [\n"
 				+ "  { \"href\": \"http://data.example.org/collections/buildings/items\",\n"
 				+ "  \"rel\": \"item\", \"type\": \"application/geo+json\",\n"
@@ -181,16 +192,16 @@ public class FeaturesTest {
 				collection.getDescription());
 		Extent extent = collection.getExtent();
 		TestCase.assertNotNull(extent);
-		TestCase.assertEquals(4, extent.getSpatial().size());
-		TestCase.assertEquals(7.01, extent.getSpatial().get(0));
-		TestCase.assertEquals(50.63, extent.getSpatial().get(1));
-		TestCase.assertEquals(7.22, extent.getSpatial().get(2));
-		TestCase.assertEquals(50.78, extent.getSpatial().get(3));
-		TestCase.assertEquals(2, extent.getTemporal().size());
+		TestCase.assertEquals(4, extent.getSpatial().getBbox().size());
+		TestCase.assertEquals(7.01, extent.getSpatial().getBbox().get(0));
+		TestCase.assertEquals(50.63, extent.getSpatial().getBbox().get(1));
+		TestCase.assertEquals(7.22, extent.getSpatial().getBbox().get(2));
+		TestCase.assertEquals(50.78, extent.getSpatial().getBbox().get(3));
+		TestCase.assertEquals(2, extent.getTemporal().getInterval().size());
 		TestCase.assertEquals("2010-02-15T12:34:56Z",
-				extent.getTemporal().get(0));
+				extent.getTemporal().getInterval().get(0));
 		TestCase.assertEquals("2018-03-18T12:11:00Z",
-				extent.getTemporal().get(1));
+				extent.getTemporal().getInterval().get(1));
 		List<Link> links = collection.getLinks();
 		TestCase.assertNotNull(extent);
 		TestCase.assertEquals(2, links.size());
@@ -204,6 +215,12 @@ public class FeaturesTest {
 
 	}
 
+	/**
+	 * Test a feature collection
+	 * 
+	 * @throws JsonProcessingException
+	 *             upon error
+	 */
 	@Test
 	public void testFeatureCollection() throws JsonProcessingException {
 
@@ -249,6 +266,9 @@ public class FeaturesTest {
 
 	}
 
+	/**
+	 * Test a feature
+	 */
 	@Test
 	public void testFeature() {
 
