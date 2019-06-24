@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Spatial
+ * The spatial extent of the features in the collection.
  * 
  * @author osbornb
  */
