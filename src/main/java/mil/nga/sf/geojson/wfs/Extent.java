@@ -1,19 +1,15 @@
 package mil.nga.sf.geojson.wfs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Extent
+ * The extent of the features in the collection. In the Core only spatial and
+ * temporal extents are specified. Extensions may add additional members to
+ * represent other extents, for example, thermal or pressure ranges.
  * 
  * @author osbornb
  */
-@JsonPropertyOrder({ "crs", "spatial", "trs", "temporal" })
-@JsonInclude(Include.NON_EMPTY)
+@JsonPropertyOrder({ "spatial", "temporal" })
 public class Extent extends FeaturesObject {
 
 	/**
@@ -22,31 +18,14 @@ public class Extent extends FeaturesObject {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Coordinate reference system of the coordinates in the spatial extent
-	 * (property spatial).
+	 * The spatial extent of the features in the collection.
 	 */
-	private String crs;
+	private Spatial spatial;
 
 	/**
-	 * West, north, east, south edges of the spatial extent. The minimum and
-	 * maximum values apply to the coordinate reference system WGS84
-	 * longitude/latitude that is supported in the Core. If, for example, a
-	 * projected coordinate reference system is used, the minimum and maximum
-	 * values need to be adjusted.
+	 * The temporal extent of the features in the collection.
 	 */
-	private List<Double> spatial = new ArrayList<>();
-
-	/**
-	 * Temporal reference system of the coordinates in the temporal extent
-	 * (property temporal). In the Core, only the Gregorian calendar is
-	 * supported. Extensions may support additional temporal reference systems.
-	 */
-	private String trs;
-
-	/**
-	 * Begin and end times of the temporal extent.
-	 */
-	private List<String> temporal = new ArrayList<>();
+	private Temporal temporal;
 
 	/**
 	 * Constructor
@@ -56,30 +35,11 @@ public class Extent extends FeaturesObject {
 	}
 
 	/**
-	 * Get the coordinate reference system
-	 * 
-	 * @return coordinate reference system
-	 */
-	public String getCrs() {
-		return crs;
-	}
-
-	/**
-	 * Set the coordinate reference system
-	 * 
-	 * @param crs
-	 *            coordinate reference system
-	 */
-	public void setCrs(String crs) {
-		this.crs = crs;
-	}
-
-	/**
 	 * Get the spatial extent
 	 * 
 	 * @return spatial extent
 	 */
-	public List<Double> getSpatial() {
+	public Spatial getSpatial() {
 		return spatial;
 	}
 
@@ -89,27 +49,8 @@ public class Extent extends FeaturesObject {
 	 * @param spatial
 	 *            spatial extent
 	 */
-	public void setSpatial(List<Double> spatial) {
+	public void setSpatial(Spatial spatial) {
 		this.spatial = spatial;
-	}
-
-	/**
-	 * Get the Temporal reference system
-	 * 
-	 * @return temporal reference system
-	 */
-	public String getTrs() {
-		return trs;
-	}
-
-	/**
-	 * Set the temporal reference system
-	 * 
-	 * @param trs
-	 *            reference system
-	 */
-	public void setTrs(String trs) {
-		this.trs = trs;
 	}
 
 	/**
@@ -117,7 +58,7 @@ public class Extent extends FeaturesObject {
 	 * 
 	 * @return temporal begin and end times
 	 */
-	public List<String> getTemporal() {
+	public Temporal getTemporal() {
 		return temporal;
 	}
 
@@ -125,9 +66,9 @@ public class Extent extends FeaturesObject {
 	 * Set the temporal extent
 	 * 
 	 * @param temporal
-	 *            temporal begin and end times
+	 *            temporal extent
 	 */
-	public void setTemporal(List<String> temporal) {
+	public void setTemporal(Temporal temporal) {
 		this.temporal = temporal;
 	}
 

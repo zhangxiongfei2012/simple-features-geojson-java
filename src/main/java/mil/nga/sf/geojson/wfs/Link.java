@@ -2,8 +2,6 @@ package mil.nga.sf.geojson.wfs;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -16,7 +14,6 @@ import mil.nga.sf.util.SFException;
  * @author osbornb
  */
 @JsonPropertyOrder({ "href", "rel", "type", "hreflang", "title" })
-@JsonInclude(Include.NON_EMPTY)
 public class Link extends FeaturesObject {
 
 	/**
